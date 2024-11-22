@@ -1,0 +1,76 @@
+.modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #0000004d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, Helvetica, sans-serif; /*"CabinetGrotesk-Bold" NOT RENDERING*/
+}
+
+.modal__title {
+  margin: 0 0 24px;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.modal__close {
+  background-image: url("../../assets/modal_close-btn.svg");
+  background-repeat: no-repeat;
+  background-color: transparent;
+  position: absolute;
+  top: 20px;
+  right: 28px;
+  border: none;
+  padding: 0;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.modal__content {
+  max-width: 496px;
+  width: 100%;
+  background-color: #fff;
+  position: relative;
+  padding: 28px 28px 36px;
+  box-sizing: border-box;
+  border-radius: 20px;
+}
+
+.modal__form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.modal__input {
+  display: block;
+  border: none;
+  width: 100%;
+  font-size: 16px;
+  line-height: 20px;
+  border-bottom: 1px solid #000;
+}
+
+.modal__radio-buttons {
+  display: flex;
+  flex-direction: column;
+  border: none;
+  padding: 0;
+}
+
+.modal__submit-button {
+  background-color: #0000004d;
+  color: #fff;
+  width: 124px;
+  height: 36px;
+  font-size: 16px;
+  line-height: 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
