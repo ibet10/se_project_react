@@ -1,0 +1,16 @@
+.cards__text {
+  margin-top: 40px;
+  margin-bottom: 34px;
+  font-size: 20px;
+  line-height: 25px;
+  font-family: Arial, Helvetica, sans-serif; /*"CabinetGrotesk-Bold" NOT RENDERING*/
+}
+
+.cards__list {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  gap: 21px;
+}
