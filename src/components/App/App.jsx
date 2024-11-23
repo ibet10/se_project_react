@@ -8,14 +8,29 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
 function App() {
   const [weatherData, setWeatherData] = useState({ type: "cold" });
+  const [activeModal, setActiveModal] = useState("");
+
+  const handleAddClick = () => {
+    setActiveModal("add-garmet");
+  };
+
+  const closeActiveModal = () => {
+    setActiveModal("");
+  };
+
   return (
     <div className="page">
       <div className="page__content">
-        <Header />
+        <Header handleAddClick={setActiveModal} />
         <Main weatherData={weatherData} />
         <Footer />
       </div>
-      <ModalWithForm title="New garmet" buttonText="Add garmet">
+      <ModalWithForm
+        activeModal={activeModal}
+        handleCloseClick={closeActiveModal}
+        title="New garmet"
+        buttonText="Add garmet"
+      >
         <label className="modal__label" htmlFor="name">
           Name{" "}
           <input
