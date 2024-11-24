@@ -4,7 +4,7 @@
   height: 80px;
   border-radius: 12px;
   overflow: hidden;
-  font-family: Arial, Helvetica, sans-serif; /*"CabinetGrotesk-Bold" NOT RENDERING*/
+  /*font-family: "CabinetGrotesk", Arial, Helvetica, sans-serif;*/
 }
 
 .weather-card__temp {

@@ -11,7 +11,7 @@
   justify-content: center;
   align-items: center;
   transition: visibility 0s 0.3s, opacity 0.3s linear;
-  font-family: "CabinetGrotesk-Bold", Arial, Helvetica, sans-serif;
+  /*font-family: "CabinetGrotesk", Arial, Helvetica, sans-serif;*/
 }
 
 .modal_opened {
@@ -95,7 +95,7 @@
   opacity: 0.5;
 }
 
-.modal__radio-input:checked + .modal__label_type_radio {
+.modal__label_type_radio:has(.modal__radio-input:checked) {
   opacity: 1;
 }
 
