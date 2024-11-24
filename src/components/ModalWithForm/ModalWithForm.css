@@ -9,7 +9,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: Arial, Helvetica, sans-serif; /*"CabinetGrotesk-Bold" NOT RENDERING*/
+  font-family: "CabinetGrotesk-Bold", Arial, Helvetica, sans-serif;
 }
 
 .modal_opened {

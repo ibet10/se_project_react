@@ -41,6 +41,33 @@ function App() {
       .catch(console.error);
   }, []);
 
+  useEffect(() => {
+    const handleEscapeClick = (e) => {
+      if (e.key === "Escape") {
+        closeActiveModal();
+      }
+    };
+
+    const handleOutsideClick = (e) => {
+      if (
+        e.target.classList.contains("modal_opened") &&
+        !e.target.closest(".modal__content")
+      ) {
+        closeActiveModal();
+      }
+    };
+
+    if (activeModal) {
+      document.addEventListener("keydown", handleEscapeClick);
+      document.addEventListener("mousedown", handleOutsideClick);
+    }
+
+    return () => {
+      document.removeEventListener("keydown", handleEscapeClick);
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, [activeModal]);
+
   return (
     <div className="page">
       <div className="page__content">
