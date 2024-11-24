@@ -1,5 +1,6 @@
 .modal {
   visibility: hidden;
+  opacity: 0;
   position: fixed;
   top: 0;
   right: 0;
@@ -9,11 +10,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: visibility 0s 0.3s, opacity 0.3s linear;
   font-family: "CabinetGrotesk-Bold", Arial, Helvetica, sans-serif;
 }
 
 .modal_opened {
   visibility: visible;
+  opacity: 1;
+  transition: visibility 0s, opacity 0.3s linear;
 }
 
 .modal__title {
@@ -85,6 +89,14 @@
 .modal__radio-input {
   margin-right: 8px;
   cursor: pointer;
+}
+
+.modal__label_type_radio {
+  opacity: 0.5;
+}
+
+.modal__radio-input:checked + .modal__label_type_radio {
+  opacity: 1;
 }
 
 .modal__submit-button {

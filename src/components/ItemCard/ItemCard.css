@@ -25,3 +25,9 @@
   overflow: hidden;
   border-radius: 20px;
 }
+
+.card__image:hover {
+  cursor: pointer;
+  opacity: 50%;
+  transition: 0.2s, ease-in;
+}

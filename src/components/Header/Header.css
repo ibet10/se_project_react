@@ -9,6 +9,7 @@
 
 .header__logo {
   margin-right: 24px;
+  display: flex;
 }
 
 .header__date-location {
@@ -17,9 +18,14 @@
 
 .header__add-clothes-button {
   margin: 0 20px 0 auto;
-  cursor: pointer;
   border: none;
   background-color: transparent;
+}
+
+.header__add-clothes-button:hover {
+  cursor: pointer;
+  opacity: 60%;
+  transition: 0.2s, ease-in;
 }
 
 .header__user-container {
@@ -30,4 +36,10 @@
 
 .header__username {
   margin: 0;
+}
+
+.header__avatar:hover {
+  cursor: pointer;
+  opacity: 60%;
+  transition: 0.2s, ease-in;
 }
