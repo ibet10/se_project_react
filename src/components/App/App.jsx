@@ -71,12 +71,12 @@ function App() {
   return (
     <div className="page">
       <div className="page__content">
-        <Header handleAddClick={setActiveModal} weatherData={weatherData} />
+        <Header handleAddClick={handleAddClick} weatherData={weatherData} />
         <Main weatherData={weatherData} handleCardClick={handleCardClick} />
         <Footer />
       </div>
       <ModalWithForm
-        activeModal={activeModal}
+        isOpen={activeModal === "add-garmet"}
         closeActiveModal={closeActiveModal}
         title="New garmet"
         buttonText="Add garmet"
@@ -106,7 +106,12 @@ function App() {
               className="modal__label modal__label_type_radio"
               htmlFor="hot"
             >
-              <input className="modal__radio-input" type="radio" id="hot" />
+              <input
+                className="modal__radio-input"
+                type="radio"
+                id="hot"
+                name="weatherType"
+              />
               Hot
             </label>
           </div>
@@ -116,7 +121,12 @@ function App() {
               className="modal__label modal__label_type_radio"
               htmlFor="warm"
             >
-              <input className="modal__radio-input" type="radio" id="warm" />
+              <input
+                className="modal__radio-input"
+                type="radio"
+                id="warm"
+                name="weatherType"
+              />
               Warm
             </label>
           </div>
@@ -126,7 +136,12 @@ function App() {
               className="modal__label modal__label_type_radio"
               htmlFor="cold"
             >
-              <input className="modal__radio-input" type="radio" id="cold" />
+              <input
+                className="modal__radio-input"
+                type="radio"
+                id="cold"
+                name="weatherType"
+              />
               Cold
             </label>
           </div>
