@@ -11,7 +11,6 @@
   justify-content: center;
   align-items: center;
   transition: visibility 0s 0.3s, opacity 0.3s linear;
-  /*font-family: "CabinetGrotesk", Arial, Helvetica, sans-serif;*/
 }
 
 .modal_opened {
@@ -24,6 +23,7 @@
   margin: 0 0 24px;
   font-size: 16px;
   line-height: 20px;
+  font-weight: 700;
 }
 
 .modal__close {
@@ -48,6 +48,9 @@
   padding: 28px 28px 36px;
   box-sizing: border-box;
   border-radius: 20px;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 700;
 }
 
 .modal__form {
@@ -59,6 +62,7 @@
 .modal__label {
   font-size: 16px;
   line-height: 20px;
+  font-weight: 700;
 }
 
 .modal__input {
@@ -68,6 +72,9 @@
   border-bottom: 1px solid #000;
   margin: 8px 0 24px 0;
   padding: 4px 0;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 700;
 }
 
 .modal__radio-buttons {
@@ -106,6 +113,7 @@
   height: 36px;
   font-size: 16px;
   line-height: 20px;
+  font-weight: 700;
   border: none;
   border-radius: 4px;
   margin-top: 24px;

@@ -5,7 +5,6 @@
   width: 323px;
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 20px;
-  /*font-family: "CabinetGrotesk", Arial, Helvetica, sans-serif;*/
 }
 
 .card__title {
@@ -16,6 +15,7 @@
   background-color: #fff;
   font-size: 16px;
   line-height: 20px;
+  font-weight: 700;
   border-radius: 4px;
   padding: 2px 12px;
 }

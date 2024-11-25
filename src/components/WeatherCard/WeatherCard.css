@@ -4,12 +4,12 @@
   height: 80px;
   border-radius: 12px;
   overflow: hidden;
-  /*font-family: "CabinetGrotesk", Arial, Helvetica, sans-serif;*/
 }
 
 .weather-card__temp {
   font-size: 36px;
   line-height: 40px;
+  font-weight: 700;
   color: #fff;
   margin: 0;
   position: absolute;

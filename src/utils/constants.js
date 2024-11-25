@@ -32,32 +32,32 @@ export const weatherOptions = [
   {
     day: false,
     condition: "clear",
-    url: new URL("../assets/nighttime/day_clear.png", import.meta.url).href,
+    url: new URL("../assets/nighttime/night_clear.png", import.meta.url).href,
   },
   {
     day: false,
     condition: "clouds",
-    url: new URL("../assets/nighttime/day_cloudy.png", import.meta.url).href,
+    url: new URL("../assets/nighttime/night_cloudy.png", import.meta.url).href,
   },
   {
     day: false,
     condition: "fog",
-    url: new URL("../assets/nighttime/day_fog.png", import.meta.url).href,
+    url: new URL("../assets/nighttime/night_fog.png", import.meta.url).href,
   },
   {
     day: false,
     condition: "rain",
-    url: new URL("../assets/nighttime/day_rain.png", import.meta.url).href,
+    url: new URL("../assets/nighttime/night_rain.png", import.meta.url).href,
   },
   {
     day: false,
     condition: "thunderstorm",
-    url: new URL("../assets/nighttime/day_storm.png", import.meta.url).href,
+    url: new URL("../assets/nighttime/night_storm.png", import.meta.url).href,
   },
   {
     day: false,
     condition: "snow",
-    url: new URL("../assets/nighttime/day_snow.png", import.meta.url).href,
+    url: new URL("../assets/nighttime/night_snow.png", import.meta.url).href,
   },
 ];
 
