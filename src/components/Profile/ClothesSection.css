@@ -1,0 +1,33 @@
+.clothes-section {
+  margin: 0 0 0 116px;
+}
+
+.clothes-section_menu {
+  display: flex;
+}
+
+.clothes-section__title {
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 700;
+  margin: 35px 0 0 0;
+}
+
+.clothes-section__add-clothes-button {
+  cursor: pointer;
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 700;
+  border: none;
+  padding: 0;
+  margin: 35px 0 0 20px;
+  opacity: 60%;
+}
+
+.clothes-section__items-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 21px;
+  padding: 0;
+  margin: 16px 0 0 0;
+}

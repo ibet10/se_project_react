@@ -6,11 +6,13 @@ import "./ClothesSection.css";
 function ClothesSection({ onCardClick }) {
   return (
     <div className="clothes-section">
-      <div>
-        <p>Your items</p>
-        <button>+ Add new</button>
+      <div className="clothes-section_menu">
+        <h2 className="clothes-section__title">Your items</h2>
+        <button className="clothes-section__add-clothes-button">
+          + Add new
+        </button>
       </div>
-      <ul className="clothes-section__items">
+      <ul className="clothes-section__items-list">
         {defaultClothingItems.map((item) => {
           return (
             <ItemCard key={item._id} item={item} onCardClick={onCardClick} />

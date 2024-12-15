@@ -9,7 +9,7 @@
 .toggle-switch__checkbox {
   appearance: none;
   border-radius: 20px;
-  border: 2px solid #000;
+  border: 2px solid #7e7e7e;
   width: 50px; /*UPDATE*/
   height: 30px; /*UPDATE*/
 }
@@ -40,13 +40,15 @@
 
 .toggle-switch_temp-C {
   position: absolute;
+  font-size: 14px;
   top: -10px;
   left: 30px;
-  color: #fff;
+  color: red;
 }
 .toggle-switch_temp-F {
   position: absolute;
+  font-size: 14px;
   top: -10px;
   left: 9px;
-  color: #fff;
+  color: red;
 }

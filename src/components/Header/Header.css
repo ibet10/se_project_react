@@ -13,6 +13,12 @@
   display: flex;
 }
 
+.header__logo:hover {
+  cursor: pointer;
+  opacity: 60%;
+  transition: 0.2s, ease-in;
+}
+
 .header__date-location {
   margin: 0;
 }
@@ -30,6 +36,11 @@
   transition: 0.2s, ease-in;
 }
 
+.header__link {
+  text-decoration: none;
+  color: #000;
+}
+
 .header__user-container {
   display: flex;
   align-items: center;
@@ -38,6 +49,12 @@
 
 .header__username {
   margin: 0;
+}
+
+.header__username:hover {
+  cursor: pointer;
+  opacity: 60%;
+  transition: 0.2s, ease-in;
 }
 
 .header__avatar:hover {
