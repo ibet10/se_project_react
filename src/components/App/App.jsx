@@ -53,11 +53,12 @@ function App() {
     try {
       const createdItem = await addItem({
         name: newItem.name,
-        imageUrl: newItem.link,
+        imageUrl: newItem.imgUrl,
         weather: newItem.weather.toLowerCase(),
       });
       setClothingItems((prevItems) => [createdItem, ...prevItems]);
       closeActiveModal();
+      console.log("Image URL:", newItem.imgUrl);
     } catch (err) {
       console.error("Error adding item:", err);
     }
