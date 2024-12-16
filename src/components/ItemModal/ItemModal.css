@@ -7,8 +7,12 @@
 }
 
 .modal__image {
-  width: 100%;
+  display: flex;
+  width: 496px;
+  height: 498px;
   object-fit: cover;
+  padding: 0;
+  margin: -28px 0 0 -28px;
   border-radius: 20px 20px 0 0;
 }
 
@@ -28,4 +32,25 @@
   font-size: 20px;
   line-height: 24px;
   font-weight: 700;
+}
+
+.modal__delete-button {
+  cursor: pointer;
+  border: none;
+  position: relative;
+  padding: 0;
+  color: #ff4d00;
+  background: none;
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 700;
+  margin-left: auto;
+  bottom: 60px;
+  display: flex;
+}
+
+.modal__delete-button:hover {
+  cursor: pointer;
+  opacity: 60%;
+  transition: 0.2s, ease-in;
 }

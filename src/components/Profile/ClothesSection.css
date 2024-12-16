@@ -24,6 +24,12 @@
   opacity: 60%;
 }
 
+.clothes-section__add-clothes-button:hover {
+  cursor: pointer;
+  opacity: 100%;
+  transition: 0.2s, ease-in;
+}
+
 .clothes-section__items-list {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

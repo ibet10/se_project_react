@@ -12,6 +12,7 @@ import Profile from "../Profile/Profile";
 
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import { coordinates, APIkey } from "../../utils/constants";
+import { getItems } from "../../utils/api";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 
 function App() {
@@ -23,7 +24,7 @@ function App() {
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
-
+  /* const [cothingItems, setClothingItems] = useState([}); */
   const handleCardClick = (card) => {
     setActiveModal("preview");
     setSelectedCard(card);
@@ -52,6 +53,16 @@ function App() {
         const filteredData = filterWeatherData(data);
         console.log(data);
         setWeatherData(filteredData);
+      })
+      .catch(console.error);
+  }, []);
+
+  //This data needs to be rendered as cards. Handle in Main and Profile components
+  useEffect(() => {
+    getItems()
+      .then((data) => {
+        console.log(data);
+        //set the setClothingItems
       })
       .catch(console.error);
   }, []);
@@ -99,6 +110,7 @@ function App() {
                 <Main
                   weatherData={weatherData}
                   handleCardClick={handleCardClick}
+                  /*Pass clothingItem prop but make sure to declare it */
                 />
               }
             ></Route>
