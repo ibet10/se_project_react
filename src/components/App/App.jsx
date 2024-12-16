@@ -77,9 +77,9 @@ function App() {
   // Delete item by Id
   const handleDeleteItemCard = async (itemId) => {
     try {
-      await deleteItem(itemId);
+      await deleteItem(itemId._id);
       setClothingItems((prevItems) =>
-        prevItems.filter((item) => item.id !== itemId)
+        prevItems.filter((item) => item._id !== itemId._id)
       );
       closeActiveModal();
     } catch (err) {
