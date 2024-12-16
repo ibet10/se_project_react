@@ -5,7 +5,7 @@ import "./App.css";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
-/*import ModalWithForm from "../ModalWithForm/ModalWithForm";*/
+//import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import ItemModal from "../ItemModal/ItemModal";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import Profile from "../Profile/Profile";
@@ -21,28 +21,48 @@ function App() {
     temp: { F: 999 },
     city: "",
   });
+
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
 
+  //Open "preview" Modal
   const handleCardClick = (card) => {
     setActiveModal("preview");
     setSelectedCard(card);
   };
 
+  //Open "add-garmet" Modal
   const handleAddClick = () => {
     setActiveModal("add-garmet");
   };
 
+  // Close "ActiveModal"
   const closeActiveModal = () => {
     setActiveModal("");
   };
 
+  // Toggle Temperature
   const handleToggleSwitchChange = () => {
     setCurrentTemperatureUnit(currentTemperatureUnit === "F" ? "C" : "F");
   };
 
+  // Add new item
+  const handleAddItemCardSubmit = async (newItem) => {
+    try {
+      const createdItem = await addItem({
+        name: newItem.name,
+        imageUrl: newItem.link,
+        weather: newItem.weather.toLowerCase(),
+      });
+      setClothingItems((prevItems) => [createdItem, ...prevItems]);
+      closeActiveModal();
+    } catch (err) {
+      console.error("Error adding item:", err);
+    }
+  };
+  /*
   const handleAddItemCardSubmit = (newItem) => {
     addItem(newItem)
       .then((createdItem) => {
@@ -52,7 +72,21 @@ function App() {
         console.error(`Error: ${err}`);
       });
   };
+  */
 
+  // Delete item by Id
+  const handleDeleteItemCard = async (itemId) => {
+    try {
+      await deleteItem(itemId);
+      setClothingItems((prevItems) =>
+        prevItems.filter((item) => item.id !== itemId)
+      );
+      closeActiveModal();
+    } catch (err) {
+      console.error("Error deleting item:", err);
+    }
+  };
+  /*
   const handleDeleteItemCard = (itemCardId) => {
     deleteItem(itemCardId)
       .then(() => {
@@ -64,7 +98,21 @@ function App() {
         console.error(err);
       });
   };
+  */
 
+  // Fetch weather data
+  useEffect(() => {
+    const fetchWeather = async () => {
+      try {
+        const data = await getWeather(coordinates, APIkey);
+        setWeatherData(filterWeatherData(data));
+      } catch (err) {
+        console.error("Error fetching weather:", err);
+      }
+    };
+    fetchWeather();
+  }, []);
+  /*
   useEffect(() => {
     getWeather(coordinates, APIkey)
       .then((data) => {
@@ -74,8 +122,21 @@ function App() {
       })
       .catch(console.error);
   }, []);
+*/
 
-  //This data needs to be rendered as cards. Handle in Main and Profile components
+  // Fetch clothing items
+  useEffect(() => {
+    const fetchItems = async () => {
+      try {
+        const items = await getItems();
+        setClothingItems(items);
+      } catch (err) {
+        console.error("Error fetching items:", err);
+      }
+    };
+    fetchItems();
+  }, []);
+  /*
   useEffect(() => {
     getItems()
       .then((data) => {
@@ -85,6 +146,7 @@ function App() {
         console.error(`Error fetching items: ${err}`);
       });
   }, []);
+  */
 
   useEffect(() => {
     const handleEscapeClick = (e) => {
@@ -113,7 +175,7 @@ function App() {
     };
   }, [activeModal]);
 
-  console.log(currentTemperatureUnit);
+  //console.log(currentTemperatureUnit);
 
   return (
     <div className="page">
@@ -139,6 +201,7 @@ function App() {
                 <Profile
                   onCardClick={handleCardClick}
                   clothingItems={clothingItems}
+                  handleAddClick={handleAddClick}
                 />
               }
             ></Route>

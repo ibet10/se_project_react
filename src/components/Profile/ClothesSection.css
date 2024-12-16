@@ -4,6 +4,11 @@
 
 .clothes-section_menu {
   display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 16px;
+  gap: 20px;
+  justify-content: flex-start;
 }
 
 .clothes-section__title {
@@ -31,9 +36,16 @@
 }
 
 .clothes-section__items-list {
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
+  list-style-type: none;
+  gap: 21px;
+  margin: 0;
+  padding: 0;
+  /*display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 21px;
   padding: 0;
   margin: 16px 0 0 0;
+  */
 }

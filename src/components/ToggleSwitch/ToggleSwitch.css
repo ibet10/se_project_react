@@ -1,28 +1,35 @@
 .toggle-switch {
+  cursor: pointer;
   display: flex;
   position: relative;
-  margin-left: 200px; /*UPDATE*/
+  margin-left: auto;
   background-color: #fff;
   border-radius: 20px;
 }
 
 .toggle-switch__checkbox {
+  cursor: pointer;
   appearance: none;
   border-radius: 20px;
   border: 2px solid #7e7e7e;
-  width: 50px; /*UPDATE*/
-  height: 30px; /*UPDATE*/
+  width: 58px;
+  height: 28px;
+}
+
+.toggle-switch__checkbox:hover {
+  border: 2px solid #000;
 }
 
 .toggle-switch__slider {
   cursor: pointer;
   position: absolute;
   border-radius: 20px;
-  width: 30px;
-  height: 30px;
+  width: 28px;
+  height: 28px;
   background-color: #000;
   color: #fff;
   text-align: center;
+  transition: 0.7s ease all;
 }
 
 .toggle-switch__active {
@@ -31,24 +38,24 @@
 }
 
 .toggle-switch_C {
-  left: 20px;
+  left: 29px;
 }
 
 .toggle-switch_F {
-  left: 1px;
+  left: -1px;
 }
 
 .toggle-switch_temp-C {
   position: absolute;
+  color: #fff;
   font-size: 14px;
-  top: -10px;
-  left: 30px;
-  color: red;
+  top: -11px;
+  left: 38px;
 }
 .toggle-switch_temp-F {
   position: absolute;
+  color: #fff;
   font-size: 14px;
-  top: -10px;
-  left: 9px;
-  color: red;
+  top: -11px;
+  left: 10px;
 }

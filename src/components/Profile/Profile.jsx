@@ -5,7 +5,17 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm"; //Add ModalWithForm?
 
 import "./Profile.css";
 
-function Profile({ onCardClick, clothingItems }) {
+function Profile({ onCardClick, clothingItems, handleAddClick }) {
+  const [isModalActive, setIsModalActive] = React.useState(false);
+
+  const handleAddItemClick = () => {
+    setIsModalActive(true);
+  };
+
+  const closeAddItemModal = () => {
+    setIsModalActive(false);
+  };
+
   return (
     <div className="profile">
       <section className="profile__sidebar">
@@ -15,6 +25,7 @@ function Profile({ onCardClick, clothingItems }) {
         <ClothesSection
           onCardClick={onCardClick}
           clothingItems={clothingItems}
+          handleAddClick={handleAddClick}
         />
       </section>
     </div>

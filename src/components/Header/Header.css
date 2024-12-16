@@ -24,7 +24,7 @@
 }
 
 .header__add-clothes-button {
-  margin: 0 20px 0 auto;
+  margin: 0 20px 0 20px;
   border: none;
   background-color: transparent;
   font-weight: 700;

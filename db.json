@@ -107,6 +107,21 @@
       "imgUrl": "dfddfs",
       "weather": "hot",
       "_id": 17
+    },
+    {
+      "name": "dddc",
+      "weather": "cold",
+      "_id": 18
+    },
+    {
+      "name": "",
+      "weather": "",
+      "_id": 19
+    },
+    {
+      "name": "dddc",
+      "weather": "warm",
+      "_id": 20
     }
   ]
 }
