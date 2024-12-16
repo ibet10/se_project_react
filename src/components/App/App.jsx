@@ -12,7 +12,7 @@ import Profile from "../Profile/Profile";
 
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import { coordinates, APIkey } from "../../utils/constants";
-import { getItems } from "../../utils/api";
+import { getItems, addItem, deleteItem } from "../../utils/api";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 
 function App() {
@@ -24,7 +24,8 @@ function App() {
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
-  /* const [cothingItems, setClothingItems] = useState([}); */
+  const [clothingItems, setClothingItems] = useState([]);
+
   const handleCardClick = (card) => {
     setActiveModal("preview");
     setSelectedCard(card);
@@ -42,9 +43,26 @@ function App() {
     setCurrentTemperatureUnit(currentTemperatureUnit === "F" ? "C" : "F");
   };
 
-  const handleAddItemSubmit = (e) => {
-    /*setClothingItems([item, ...clothingItems]);*/
-    console.log(e.target);
+  const handleAddItemCardSubmit = (newItem) => {
+    addItem(newItem)
+      .then((createdItem) => {
+        setClothingItems([createdItem, ...clothingItems]);
+      })
+      .catch((err) => {
+        console.error(`Error: ${err}`);
+      });
+  };
+
+  const handleDeleteItemCard = (itemCardId) => {
+    deleteItem(itemCardId)
+      .then(() => {
+        setClothingItems(
+          clothingItems.filter((item) => item.id !== itemCardId)
+        );
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   };
 
   useEffect(() => {
@@ -61,10 +79,11 @@ function App() {
   useEffect(() => {
     getItems()
       .then((data) => {
-        console.log(data);
-        //set the setClothingItems
+        setClothingItems(data);
       })
-      .catch(console.error);
+      .catch((err) => {
+        console.error(`Error fetching items: ${err}`);
+      });
   }, []);
 
   useEffect(() => {
@@ -110,13 +129,18 @@ function App() {
                 <Main
                   weatherData={weatherData}
                   handleCardClick={handleCardClick}
-                  /*Pass clothingItem prop but make sure to declare it */
+                  clothingItems={clothingItems}
                 />
               }
             ></Route>
             <Route
               path="/profile"
-              element={<Profile onCardClick={handleCardClick} />}
+              element={
+                <Profile
+                  onCardClick={handleCardClick}
+                  clothingItems={clothingItems}
+                />
+              }
             ></Route>
           </Routes>
 
@@ -125,7 +149,7 @@ function App() {
 
         <AddItemModal
           isOpen={activeModal}
-          onAddItem={handleAddItemSubmit}
+          onAddItem={handleAddItemCardSubmit}
           closeActiveModal={closeActiveModal}
         />
 
@@ -133,6 +157,7 @@ function App() {
           isOpen={activeModal}
           card={selectedCard}
           closeActiveModal={closeActiveModal}
+          onDelete={handleDeleteItemCard}
         />
       </CurrentTemperatureUnitContext.Provider>
     </div>

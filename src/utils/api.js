@@ -1,117 +1,51 @@
 const baseUrl = "http://localhost:3001";
 
 /*PROCESS SERVER REQUESTS*/
-
-// GET/items
-function getItems() {
-  return fetch(`${baseUrl}/items`).then((res) => {
-    return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-  });
+function checkRequest(res) {
+  if (res.ok) {
+    return res.json();
+  }
+  return Promise.reject(`Error: ${res.status}`);
 }
 
-export { getItems };
+// GET/items
+export async function getItems() {
+  const res = await fetch(`${baseUrl}/items`);
+  return checkRequest(res);
+}
 
 // POST/items
+export const addItem = (item) => {
+  return fetch(`${baseUrl}/items`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(item),
+  }).then((res) => checkRequest(res));
+};
 
 // DELETE/items
+export const deleteItem = (id) => {
+  return fetch(`${baseUrl}/items/${id}`, {
+    method: "DELETE",
+  }).then((res) => checkRequest(res));
+};
 
-/* EXAMPLE CODE FROM PREVIOUS PROJECT
+/*
+async function getItems() {
+  const res = await fetch(`${baseUrl}/items`);
+  return await (res.ok ? res.json() : Promise.reject(`Error: ${res.status}`));
+}
+export { getItems };  
 
-export default class Api {
-    constructor({ baseUrl, headers }) {
-      this._baseUrl = baseUrl;
-      this._headers = headers;
-    }
+export const addItem = (item) => 
+  fetch(`${baseUrl}/items`, {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json' },
+    body: JSON.stringify(item),
+  }). then((res) => res.json());
   
-    _checkRequest(res) {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Error: ${res.status}`);
-    }
-  
-    async _request(url, options) {
-      const res = await fetch(url, options);
-      return this._checkRequest(res);
-    }
-  
-    getCardsAndUserInfo() {
-      return Promise.all([this.getInitialCards(), this.getUserInfo()]);
-    }
-  
-    // User routes
-
-    //GET /users/me – Get the current user’s info
-    getUserInfo() {
-      return this._request(`${this._baseUrl}/users/me`, {
-        method: "GET",
-        headers: this._headers,
-      });
-    }
-    //PATCH /users/me – Update your profile information
-    updateProfileInfo(name, about) {
-      const url = `${this._baseUrl}/users/me`;
-      const options = {
-        method: "PATCH",
-        headers: this._headers,
-        body: JSON.stringify({ name, about }),
-      };
-  
-      console.log("URL:", url);
-      console.log("Options:", options);
-  
-      return this._request(url, options);
-    }
-  
-    //PATCH /users/me/avatar – Update avatar
-    updateAvatar(url) {
-      return this._request(`${this._baseUrl}/users/me/avatar`, {
-        method: "PATCH",
-        headers: this._headers,
-        body: JSON.stringify({ avatar: url }),
-      });
-    }
-  
-    // Card routes 
-
-    //GET /cards – Get all cards
-    getInitialCards() {
-      return this._request(`${this._baseUrl}/cards`, {
-        method: "GET",
-        headers: this._headers,
-      });
-    }
-
-    //POST /cards – Create a card
-    createNewCard({ name, link }) {
-      return this._request(`${this._baseUrl}/cards`, {
-        method: "POST",
-        headers: this._headers,
-        body: JSON.stringify({ name, link }),
-      });
-    }
-  
-    //DELETE /cards/:cardId – Delete a card
-    deleteCard(cardId) {
-      return this._request(`${this._baseUrl}/cards/${cardId}`, {
-        method: "DELETE",
-        headers: this._headers,
-      });
-    }
-  
-    //PUT /cards/:cardId/likes – Like a card
-    likeCard(cardId) {
-      return this._request(`${this._baseUrl}/cards/${cardId}/likes`, {
-        method: "PUT",
-        headers: this._headers,
-      });
-    }
-    //DELETE /cards/:cardId/likes – Dislike a card
-    dislikeCard(cardId) {
-      return this._request(`${this._baseUrl}/cards/${cardId}/likes`, {
-        method: "DELETE",
-        headers: this._headers,
-      });
-    }
-  }
+export const deleteItem = (id) => 
+  fetch(`${baseUrl}/items/${id}`, {
+    method: 'DELETE',
+  }).then((res) => res.json());
   */

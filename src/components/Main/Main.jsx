@@ -3,9 +3,10 @@ import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperature
 import "./Main.css";
 import WeatherCard from "../WeatherCard/WeatherCard";
 import ItemCard from "../ItemCard/ItemCard";
-import { defaultClothingItems } from "../../utils/constants"; //No longer use, instead pass clothingItems prop here and to App Main
+//import { defaultClothingItems } from "../../utils/constants";
+// //No longer use, instead pass clothingItems prop here and to App Main
 
-function Main({ weatherData, handleCardClick /*, clothingItems */ }) {
+function Main({ weatherData, handleCardClick, clothingItems }) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
   return (
     <main className="content">
@@ -16,7 +17,7 @@ function Main({ weatherData, handleCardClick /*, clothingItems */ }) {
           {currentTemperatureUnit}/ You may want to wear:
         </p>
         <ul className="cards__list">
-          {defaultClothingItems /*clothingItems*/
+          {clothingItems
             .filter((item) => {
               return item.weather === weatherData.type;
             })
