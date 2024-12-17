@@ -63,17 +63,6 @@ function App() {
       console.error("Error adding item:", err);
     }
   };
-  /*
-  const handleAddItemCardSubmit = (newItem) => {
-    addItem(newItem)
-      .then((createdItem) => {
-        setClothingItems([createdItem, ...clothingItems]);
-      })
-      .catch((err) => {
-        console.error(`Error: ${err}`);
-      });
-  };
-  */
 
   // Delete item by Id
   const handleDeleteItemCard = async (itemId) => {
@@ -87,19 +76,6 @@ function App() {
       console.error("Error deleting item:", err);
     }
   };
-  /*
-  const handleDeleteItemCard = (itemCardId) => {
-    deleteItem(itemCardId)
-      .then(() => {
-        setClothingItems(
-          clothingItems.filter((item) => item.id !== itemCardId)
-        );
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  };
-  */
 
   // Fetch weather data
   useEffect(() => {
@@ -113,17 +89,6 @@ function App() {
     };
     fetchWeather();
   }, []);
-  /*
-  useEffect(() => {
-    getWeather(coordinates, APIkey)
-      .then((data) => {
-        const filteredData = filterWeatherData(data);
-        console.log(data);
-        setWeatherData(filteredData);
-      })
-      .catch(console.error);
-  }, []);
-*/
 
   // Fetch clothing items
   useEffect(() => {
@@ -137,17 +102,6 @@ function App() {
     };
     fetchItems();
   }, []);
-  /*
-  useEffect(() => {
-    getItems()
-      .then((data) => {
-        setClothingItems(data);
-      })
-      .catch((err) => {
-        console.error(`Error fetching items: ${err}`);
-      });
-  }, []);
-  */
 
   useEffect(() => {
     const handleEscapeClick = (e) => {

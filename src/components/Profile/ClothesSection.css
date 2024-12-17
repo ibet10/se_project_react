@@ -36,16 +36,23 @@
 }
 
 .clothes-section__items-list {
-  display: flex;
-  flex-wrap: wrap;
-  list-style-type: none;
-  gap: 21px;
-  margin: 0;
-  padding: 0;
-  /*display: grid;
+  display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 21px;
+  gap: 20px;
   padding: 0;
   margin: 16px 0 0 0;
-  */
+  list-style-type: none;
+}
+
+@media screen and (max-width: 1422px) {
+  .clothes-section__items-list {
+    grid-template-columns: repeat(2, 1fr);
+    margin: 16px 16px 0 0;
+  }
+}
+
+@media screen and (max-width: 1050px) {
+  .clothes-section__items-list {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }

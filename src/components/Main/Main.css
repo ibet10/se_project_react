@@ -7,11 +7,10 @@
 }
 
 .cards__list {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
   justify-content: center;
-  margin: 0;
+  grid-template-columns: repeat(auto-fit, 325px);
   padding: 0;
-  list-style-type: none;
-  gap: 21px;
+  margin: 0;
+  gap: 20px;
 }

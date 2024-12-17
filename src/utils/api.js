@@ -32,37 +32,3 @@ export async function deleteItem(id) {
   });
   return checkRequest(res);
 }
-
-/* 
-const baseUrl = "http://localhost:3001";
-
-//PROCESS SERVER REQUESTS
-function checkRequest(res) {
-  if (res.ok) {
-    return res.json();
-  }
-  return Promise.reject(`Error: ${res.status}`);
-}
-
-// GET/items
-export async function getItems() {
-  const res = await fetch(`${baseUrl}/items`);
-  return checkRequest(res);
-}
-
-// POST/items
-export const addItem = (item) => {
-  return fetch(`${baseUrl}/items`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(item),
-  }).then((res) => checkRequest(res));
-};
-
-// DELETE/items
-export const deleteItem = (id) => {
-  return fetch(`${baseUrl}/items/${id}`, {
-    method: "DELETE",
-  }).then((res) => checkRequest(res));
-};
-*/
