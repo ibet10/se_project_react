@@ -51,6 +51,6 @@
 
 .modal__delete-button:hover {
   cursor: pointer;
-  opacity: 60%;
+  color: red;
   transition: 0.2s, ease-in;
 }

@@ -9,6 +9,7 @@ import Footer from "../Footer/Footer";
 import ItemModal from "../ItemModal/ItemModal";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import Profile from "../Profile/Profile";
+import DeleteConfirmationModal from "../DeleteConfirmationModal/DeleteConfirmationModal";
 
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import { coordinates, APIkey } from "../../utils/constants";
@@ -26,6 +27,7 @@ function App() {
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
+  const [cardToDelete, setCardToDelete] = useState(null);
 
   //Open "preview" Modal
   const handleCardClick = (card) => {
@@ -38,10 +40,22 @@ function App() {
     setActiveModal("add-garmet");
   };
 
+  //Open "confirm-delete" Modal
+  const openConfirmDeleteModal = (card) => {
+    setCardToDelete(card);
+    setActiveModal("confirm-delete");
+  };
+
   // Close "ActiveModal"
   const closeActiveModal = () => {
     setActiveModal("");
+    setCardToDelete(null);
   };
+  /*
+  const closeActiveModal = () => {
+    setActiveModal("");
+  };
+  */
 
   // Toggle Temperature
   const handleToggleSwitchChange = () => {
@@ -65,6 +79,21 @@ function App() {
   };
 
   // Delete item by Id
+  const handleDeleteItemCard = async () => {
+    if (!cardToDelete) return;
+
+    try {
+      await deleteItem(cardToDelete._id);
+      setClothingItems((prevItems) =>
+        prevItems.filter((item) => item._id !== cardToDelete._id)
+      );
+      closeActiveModal();
+      setCardToDelete(null);
+    } catch (err) {
+      console.error("Error deleting item:", err);
+    }
+  };
+  /*
   const handleDeleteItemCard = async (itemId) => {
     try {
       await deleteItem(itemId);
@@ -76,6 +105,7 @@ function App() {
       console.error("Error deleting item:", err);
     }
   };
+  */
 
   // Fetch weather data
   useEffect(() => {
@@ -175,7 +205,15 @@ function App() {
           isOpen={activeModal}
           card={selectedCard}
           closeActiveModal={closeActiveModal}
-          onDelete={handleDeleteItemCard}
+          onDelete={() => openConfirmDeleteModal(selectedCard)}
+          //onDelete={handleDeleteItemCard}
+        />
+
+        <DeleteConfirmationModal
+          isOpen={activeModal}
+          closeActiveModal={closeActiveModal}
+          onConfirm={handleDeleteItemCard}
+          cardName={cardToDelete?.name}
         />
       </CurrentTemperatureUnitContext.Provider>
     </div>

@@ -40,6 +40,11 @@
   cursor: pointer;
 }
 
+.modal__close:hover {
+  opacity: 40%;
+  transition: 0.2s, ease-in;
+}
+
 .modal__content {
   max-width: 496px;
   width: 100%;
