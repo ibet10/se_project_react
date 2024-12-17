@@ -9,14 +9,28 @@
 
 .modal__options {
   display: flex;
+  flex-direction: column;
 }
 
-.modal__caption {
+.modal__confirm-caption {
   position: relative;
+  text-align: center;
+  margin: 0 0 40px 0;
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 700;
 }
 
 .modal__action-buttons {
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  gap: 24px;
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 700;
 }
 
 .modal__button-delete {
@@ -30,7 +44,6 @@
   line-height: 24px;
   font-weight: 700;
   margin-left: auto;
-  bottom: 60px;
 }
 
 .modal__button-delete:hover {
@@ -41,6 +54,7 @@
 
 .modal__button-cancel {
   cursor: pointer;
+
   border: none;
   position: relative;
   padding: 0;
@@ -49,8 +63,6 @@
   font-size: 20px;
   line-height: 24px;
   font-weight: 700;
-  margin-left: auto;
-  bottom: 60px;
 }
 
 .modal__button-cancel:hover {

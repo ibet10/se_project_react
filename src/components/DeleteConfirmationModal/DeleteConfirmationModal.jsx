@@ -19,9 +19,9 @@ function DeleteConfirmationModal({
         ></button>
       </div>
       <div className="modal__options">
-        <h2 className="modal__caption">
-          Are you sure you want to delete {cardName}? <br /> This action is
-          irreversible.
+        <h2 className="modal__confirm-caption">
+          Are you sure you want to delete <strong>"{cardName}"</strong>? <br />{" "}
+          This action is irreversible.
         </h2>
         <div className="modal__action-buttons">
           <button
