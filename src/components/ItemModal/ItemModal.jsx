@@ -1,8 +1,6 @@
 import React from "react";
 import "./ItemModal.css";
 
-//import { deleteItem } from "../../utils/api";
-
 function ItemModal({ isOpen, card, closeActiveModal, onDelete }) {
   const handleDelete = () => {
     onDelete(card._id);

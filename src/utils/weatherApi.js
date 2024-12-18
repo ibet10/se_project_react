@@ -1,15 +1,17 @@
-function processServerRequest(res) {
+import { checkRequest } from "./api"; //Replaced processServerRequest
+
+/*function processServerRequest(res) {
   if (res.ok) {
     return res.json();
   } else {
     return Promise.reject(`Error: ${res.status}`);
   }
-}
+}*/
 
 export const getWeather = ({ latitude, longitude }, APIkey) => {
   return fetch(
     `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${APIkey}`
-  ).then(processServerRequest);
+  ).then(checkRequest); //Replaced processServerRequest
 };
 
 export const filterWeatherData = (data) => {

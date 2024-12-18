@@ -1,11 +1,11 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import "./App.css";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
-//import ModalWithForm from "../ModalWithForm/ModalWithForm";
+
 import ItemModal from "../ItemModal/ItemModal";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import Profile from "../Profile/Profile";
@@ -28,6 +28,7 @@ function App() {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
   const [cardToDelete, setCardToDelete] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   //Open "preview" Modal
   const handleCardClick = (card) => {
@@ -51,11 +52,6 @@ function App() {
     setActiveModal("");
     setCardToDelete(null);
   };
-  /*
-  const closeActiveModal = () => {
-    setActiveModal("");
-  };
-  */
 
   // Toggle Temperature
   const handleToggleSwitchChange = () => {
@@ -64,6 +60,7 @@ function App() {
 
   // Add new item
   const handleAddItemCardSubmit = async (newItem) => {
+    setIsLoading(true);
     try {
       const createdItem = await addItem({
         name: newItem.name,
@@ -72,9 +69,10 @@ function App() {
       });
       setClothingItems((prevItems) => [createdItem, ...prevItems]);
       closeActiveModal();
-      console.log("Image URL:", newItem.imgUrl);
     } catch (err) {
       console.error("Error adding item:", err);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -88,24 +86,10 @@ function App() {
         prevItems.filter((item) => item._id !== cardToDelete._id)
       );
       closeActiveModal();
-      setCardToDelete(null);
     } catch (err) {
       console.error("Error deleting item:", err);
     }
   };
-  /*
-  const handleDeleteItemCard = async (itemId) => {
-    try {
-      await deleteItem(itemId);
-      setClothingItems((prevItems) =>
-        prevItems.filter((item) => item._id !== itemId)
-      );
-      closeActiveModal();
-    } catch (err) {
-      console.error("Error deleting item:", err);
-    }
-  };
-  */
 
   // Fetch weather data
   useEffect(() => {
@@ -199,6 +183,7 @@ function App() {
           isOpen={activeModal}
           onAddItem={handleAddItemCardSubmit}
           closeActiveModal={closeActiveModal}
+          buttonText={isLoading ? "Saving..." : "Add garmet"}
         />
 
         <ItemModal
@@ -206,7 +191,6 @@ function App() {
           card={selectedCard}
           closeActiveModal={closeActiveModal}
           onDelete={() => openConfirmDeleteModal(selectedCard)}
-          //onDelete={handleDeleteItemCard}
         />
 
         <DeleteConfirmationModal
