@@ -6,4 +6,6 @@ The idea of the application is pretty simple - we make a call to an API, which t
 
 ## Links
 
-- [Figma Design](https://www.figma.com/design/F03bTb81Pw8IDPj5Y9rc5i/Sprint-10-%7C-WTWR?node-id=311-433&node-type=canvas&t=bPsgXJVI00zNYk9B-0)
+- [Figma Design](https://www.figma.com/design/bfVOvqlLmoKZ5lpro8WWBe/Sprint-14_-WTWR?node-id=1-653&t=8GvBtnObDs3UUgfd-0)
+
+- [Backend Repository](https://github.com/ibet10/se_project_express)
