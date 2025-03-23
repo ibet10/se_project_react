@@ -1,4 +1,5 @@
 import { baseUrl } from "./constants";
+import { getToken } from "./auth";
 // REMOVE - const baseUrl = "http://localhost:3001";
 
 // Response Checker
@@ -20,7 +21,10 @@ export async function getItems(weatherType = "") {
 export async function addItem(item) {
   const res = await fetch(`${baseUrl}/items`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${getToken()}`,
+    },
     body: JSON.stringify(item),
   });
   return checkRequest(res);
@@ -30,6 +34,10 @@ export async function addItem(item) {
 export async function deleteItem(id) {
   const res = await fetch(`${baseUrl}/items/${id}`, {
     method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${getToken()}`,
+    },
   });
   return checkRequest(res);
 }

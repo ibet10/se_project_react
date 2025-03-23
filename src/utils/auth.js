@@ -14,6 +14,16 @@ export const removeToken = () => {
   localStorage.removeItem(token_key);
 };
 
+export const checkToken = async (token) => {
+  return fetch(`${baseUrl}/users/me`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+  }).then(checkRequest);
+};
+
 export const register = async ({ name, avatar, email, password }) => {
   const res = await fetch(`${baseUrl}/signup`, {
     method: "POST",
@@ -36,6 +46,7 @@ export const login = async ({ email, password }) => {
   const data = await checkRequest(res);
   if (data.token) {
     setToken(data.token);
+    localStorage.setItem("email", email);
   }
 
   return data;
