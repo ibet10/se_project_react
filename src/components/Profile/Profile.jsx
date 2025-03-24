@@ -1,26 +1,36 @@
 import React from "react";
 import SideBar from "./SideBar";
 import ClothesSection from "./ClothesSection";
+import EditProfileModal from "./EditProfileModal";
+
 import { useContext } from "react";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 import "./Profile.css";
 
-/*
-function Profile() {
+function Profile({ onCardClick, clothingItems, handleAddClick }) {
   const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
 
-  const handleUpdateProfile = (newUserData) => {
-    // Make API call to update user data
-    // Then update the context
-    setCurrentUser(newUserData);
+  const [isEditProfileModalOpen, setIsEditProfileModalOpen] =
+    React.useState(false);
+
+  const handleEditProfileClick = () => {
+    setIsEditProfileModalOpen(true);
   };
-*/
-function Profile({ onCardClick, clothingItems, handleAddClick }) {
+
+  const handleCloseEditProfileModal = () => {
+    setIsEditProfileModalOpen(false);
+  };
+
+  const handleProfileUpdate = (updatedData) => {
+    setCurrentUser(updatedData);
+    handleCloseEditProfileModal();
+  };
+
   return (
     <div className="profile">
       <section className="profile__sidebar">
-        <SideBar />
+        <SideBar onEditProfile={handleEditProfileClick} />
       </section>
       <section className="profile__clothes-section">
         <ClothesSection
@@ -29,6 +39,12 @@ function Profile({ onCardClick, clothingItems, handleAddClick }) {
           handleAddClick={handleAddClick}
         />
       </section>
+      <EditProfileModal
+        isOpen={isEditProfileModalOpen}
+        onClose={handleCloseEditProfileModal}
+        onSubmit={handleProfileUpdate}
+        currentUser={currentUser}
+      />
     </div>
   );
 }
