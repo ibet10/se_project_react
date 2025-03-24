@@ -143,11 +143,13 @@ function App() {
   const handleAddItemCardSubmit = async (newItem) => {
     setIsLoading(true);
     try {
-      const createdItem = await addItem({
+      const response = await addItem({
         name: newItem.name,
         imageUrl: newItem.imgUrl,
         weather: newItem.weather.toLowerCase(),
       });
+      const createdItem = response.data;
+      //console.log("Created item data:", createdItem);
       setClothingItems((prevItems) => [createdItem, ...prevItems]);
       closeActiveModal();
     } catch (err) {
@@ -156,6 +158,25 @@ function App() {
       setIsLoading(false);
     }
   };
+  /*
+  const handleAddItemCardSubmit = async (newItem) => {
+    setIsLoading(true);
+    try {
+      const createdItem = await addItem({
+        name: newItem.name,
+        imageUrl: newItem.imgUrl,
+        weather: newItem.weather.toLowerCase(),
+      });
+      console.log("Created item:", createdItem);
+      setClothingItems((prevItems) => [createdItem, ...prevItems]);
+      closeActiveModal();
+    } catch (err) {
+      console.error("Error adding item:", err);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+  */
 
   // Delete item by Id
   const handleDeleteItemCard = async () => {
@@ -190,7 +211,7 @@ function App() {
     const fetchItems = async () => {
       try {
         const items = await getItems();
-        console.log("Fetched items:", items);
+        //console.log("Fetched items:", items);
         setClothingItems(items);
       } catch (err) {
         console.error("Error fetching items:", err);
