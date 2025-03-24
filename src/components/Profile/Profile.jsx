@@ -6,9 +6,10 @@ import EditProfileModal from "./EditProfileModal";
 import { useContext } from "react";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
+import { updateProfile, getToken } from "../../utils/auth";
 import "./Profile.css";
 
-function Profile({ onCardClick, clothingItems, handleAddClick }) {
+function Profile({ onCardClick, clothingItems, handleAddClick, handleLogout }) {
   const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
 
   const [isEditProfileModalOpen, setIsEditProfileModalOpen] =
@@ -22,15 +23,24 @@ function Profile({ onCardClick, clothingItems, handleAddClick }) {
     setIsEditProfileModalOpen(false);
   };
 
-  const handleProfileUpdate = (updatedData) => {
-    setCurrentUser(updatedData);
-    handleCloseEditProfileModal();
+  const handleProfileUpdate = async (updatedData) => {
+    try {
+      const updatedUser = await updateProfile(getToken(), updatedData);
+
+      setCurrentUser(updatedUser);
+      handleCloseEditProfileModal();
+    } catch (error) {
+      console.error("Error updating profile:", error);
+    }
   };
 
   return (
     <div className="profile">
       <section className="profile__sidebar">
-        <SideBar onEditProfile={handleEditProfileClick} />
+        <SideBar
+          onEditProfile={handleEditProfileClick}
+          onLogout={handleLogout}
+        />
       </section>
       <section className="profile__clothes-section">
         <ClothesSection

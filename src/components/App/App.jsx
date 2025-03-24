@@ -79,11 +79,15 @@ function App() {
 
   // Handle Logging In
   const handleLogin = async ({ email, password }) => {
+    console.log("handleLogin called with:", { email, password });
     try {
       const userData = await login({ email, password });
-      setIsLoggedIn(true);
-      setCurrentUser(userData);
-      setActiveModal("");
+      console.log("Login userData:", userData);
+      if (userData) {
+        setIsLoggedIn(true);
+        setCurrentUser(userData);
+        setActiveModal("");
+      }
     } catch (err) {
       console.error("Login attempt failed, :(", err);
     }
@@ -127,6 +131,7 @@ function App() {
   const handleLogout = () => {
     removeToken();
     setIsLoggedIn(false);
+    setCurrentUser(null);
   };
 
   // Toggle Temperature
@@ -279,6 +284,7 @@ function App() {
                       onCardClick={handleCardClick}
                       clothingItems={clothingItems}
                       handleAddClick={handleAddClick}
+                      handleLogout={handleLogout}
                     />
                   </ProtectedRoute>
                 }

@@ -6,7 +6,7 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import "./SideBar.css";
 import avatar from "../../assets/avatar.png";
 
-function SideBar({ onEditProfile }) {
+function SideBar({ onEditProfile, onLogout }) {
   const { currentUser } = useContext(CurrentUserContext);
 
   return (
@@ -23,7 +23,9 @@ function SideBar({ onEditProfile }) {
         <button className="sidebar__button" onClick={onEditProfile}>
           Edit profile data
         </button>
-        <button className="sidebar__button">Log out</button>
+        <button className="sidebar__button" onClick={onLogout}>
+          Log out
+        </button>
       </div>
     </div>
   );
