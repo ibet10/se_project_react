@@ -8,6 +8,13 @@ import ItemCard from "../ItemCard/ItemCard";
 
 function Main({ weatherData, handleCardClick, clothingItems }) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
+
+  console.log("Weather type:", weatherData.type);
+  console.log(
+    "Items weather:",
+    clothingItems.map((item) => item.weather)
+  );
+
   return (
     <main className="content">
       <WeatherCard weatherData={weatherData} />

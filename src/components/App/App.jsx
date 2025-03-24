@@ -80,6 +80,17 @@ function App() {
   // Handle Logging In
   const handleLogin = async ({ email, password }) => {
     try {
+      const userData = await login({ email, password });
+      setIsLoggedIn(true);
+      setCurrentUser(userData);
+      setActiveModal("");
+    } catch (err) {
+      console.error("Login attempt failed, :(", err);
+    }
+  };
+  /*
+  const handleLogin = async ({ email, password }) => {
+    try {
       await login({ email, password });
       setIsLoggedIn(true);
       setActiveModal("");
@@ -87,8 +98,20 @@ function App() {
       console.error("Login attempt failed, :(", err);
     }
   };
+*/
 
   // Handle Registration
+  const handleRegistration = async ({ name, avatar, email, password }) => {
+    try {
+      const userData = await register({ email, password, name, avatar });
+      setIsLoggedIn(true);
+      setCurrentUser(userData);
+      setActiveModal("");
+    } catch (err) {
+      console.error("Registration attempt failed, :(", err);
+    }
+  };
+  /*
   const handleRegistration = async ({ name, avatar, email, password }) => {
     try {
       await register({ email, password, name, avatar });
@@ -98,6 +121,7 @@ function App() {
       console.error("Registration attempt failed, :(", err);
     }
   };
+  */
 
   // Handle Logging Out
   const handleLogout = () => {
@@ -161,6 +185,7 @@ function App() {
     const fetchItems = async () => {
       try {
         const items = await getItems();
+        console.log("Fetched items:", items);
         setClothingItems(items);
       } catch (err) {
         console.error("Error fetching items:", err);

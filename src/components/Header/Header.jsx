@@ -22,6 +22,7 @@ function Header({
   });
 
   const { currentUser } = useContext(CurrentUserContext) || {};
+  console.log("Current User in Header:", currentUser);
 
   return (
     <header className="header">
@@ -33,7 +34,6 @@ function Header({
       </p>
 
       <ToggleSwitch />
-
       {!isLoggedIn ? (
         <div className="header__auth-buttons">
           <button className="header__button" onClick={onRegisterClick}>
@@ -44,23 +44,28 @@ function Header({
           </button>
         </div>
       ) : (
-        <>
-          <button className="header__button" onClick={onLogout}>
-            Log Out
-          </button>
-          <Link to="/profile" className="header__link">
-            <div className="header__user-container">
-              <p className="header__username">
-                {currentUser?.name || "Username"}
-              </p>
-              <img
-                className="header__avatar"
-                src={currentUser?.avatar || avatar}
-                alt="user avatar image"
-              />
+        <Link to="/profile" className="header__link">
+          <div className="header__user-container">
+            <p className="header__username">
+              {currentUser?.name || "Username"}
+            </p>
+            <div className="header__avatar">
+              {currentUser?.avatar ? (
+                <img
+                  className="header__avatar-image"
+                  src={currentUser.avatar}
+                  alt="user avatar"
+                />
+              ) : (
+                <div className="header__avatar-placeholder">
+                  {currentUser?.name
+                    ? currentUser.name.charAt(0).toUpperCase()
+                    : "U"}
+                </div>
+              )}
             </div>
-          </Link>
-        </>
+          </div>
+        </Link>
       )}
     </header>
   );
