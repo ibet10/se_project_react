@@ -9,6 +9,7 @@ import Footer from "../Footer/Footer";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
 import LoginModal from "../LoginModal/LoginModal";
+import RegisterModal from "../RegisterModal/RegisterModal";
 import ItemModal from "../ItemModal/ItemModal";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import Profile from "../Profile/Profile";
@@ -71,8 +72,13 @@ function App() {
     setActiveModal("login");
   };
 
+  //Open "Registration" Modal
+  const handleRegisterClick = () => {
+    setActiveModal("register");
+  };
+
   // Handle Logging In
-  const handleLogin = async (email, password) => {
+  const handleLogin = async ({ email, password }) => {
     try {
       await login({ email, password });
       setIsLoggedIn(true);
@@ -83,9 +89,9 @@ function App() {
   };
 
   // Handle Registration
-  const handleRegistration = async (email, password) => {
+  const handleRegistration = async ({ name, avatar, email, password }) => {
     try {
-      await register({ email, password });
+      await register({ email, password, name, avatar });
       setIsLoggedIn(true);
       setActiveModal("");
     } catch (err) {
@@ -215,7 +221,7 @@ function App() {
   }, []);
 
   return (
-    <CurrentUserContext.Provider value={currentUser}>
+    <CurrentUserContext.Provider value={{ currentUser, setCurrentUser }}>
       <div className="page">
         <CurrentTemperatureUnitContext.Provider
           value={{ currentTemperatureUnit, handleToggleSwitchChange }}
@@ -227,6 +233,7 @@ function App() {
               isLoggedIn={isLoggedIn}
               onLoginClick={handleLoginClick}
               onLogout={handleLogout}
+              onRegisterClick={handleRegisterClick}
             />
             <Routes>
               <Route
@@ -277,11 +284,20 @@ function App() {
             cardName={cardToDelete?.name}
           />
 
+          <RegisterModal
+            isOpen={activeModal === "register"}
+            onRegister={handleRegistration}
+            closeActiveModal={closeActiveModal}
+            buttonText={"Sign up"}
+            onRegisterClick={handleRegisterClick}
+          />
+
           <LoginModal
             isOpen={activeModal === "login"}
             onLogin={handleLogin}
             closeActiveModal={closeActiveModal}
             buttonText={"Log in"}
+            onLoginClick={handleLoginClick}
           />
         </CurrentTemperatureUnitContext.Provider>
       </div>

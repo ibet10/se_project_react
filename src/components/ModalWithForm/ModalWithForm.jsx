@@ -7,6 +7,8 @@ function ModalWithForm({
   isOpen,
   closeActiveModal,
   onSubmit,
+  alternativeButtonText,
+  onAlternativeClick,
 }) {
   return (
     <div className={`modal ${isOpen ? "modal_opened" : ""}`}>
@@ -19,9 +21,18 @@ function ModalWithForm({
         />
         <form className="modal__form" onSubmit={onSubmit}>
           {children}
-          <button className="modal__submit-button" type="submit">
-            {buttonText}
-          </button>
+          <div className="modal__button-container">
+            <button className="modal__submit-button" type="submit">
+              {buttonText}
+            </button>
+            <button
+              className="modal__alternative-button"
+              type="button"
+              onClick={onAlternativeClick}
+            >
+              {alternativeButtonText}
+            </button>
+          </div>
         </form>
       </div>
     </div>

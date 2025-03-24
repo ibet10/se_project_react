@@ -6,6 +6,7 @@ const RegisterModal = ({
   onRegister,
   closeActiveModal,
   buttonText,
+  onRegisterClick,
 }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -44,11 +45,13 @@ const RegisterModal = ({
 
   return (
     <ModalWithForm
-      isOpen={isOpen === "register"}
+      isOpen={isOpen}
       closeActiveModal={closeActiveModal}
       onSubmit={handleSubmit}
       title="Sign Up"
       buttonText={buttonText}
+      alternativeButtonText="Log in"
+      onAlternativeClick={onRegisterClick}
     >
       <label className="modal__label" htmlFor="email-register">
         Email*{" "}
@@ -113,8 +116,6 @@ const RegisterModal = ({
         />
       </label>
     </ModalWithForm>
-
-    //INCOMPLETE -- ADD BUTTONS "Sign up or Login"
   );
 };
 
