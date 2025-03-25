@@ -7,6 +7,12 @@
   font-weight: 700;
 }
 
+.header__user-section {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
 .header__logo {
   margin-right: 24px;
   margin-bottom: 5px;

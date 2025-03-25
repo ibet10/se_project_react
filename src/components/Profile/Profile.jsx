@@ -9,11 +9,22 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { updateProfile, getToken } from "../../utils/auth";
 import "./Profile.css";
 
-function Profile({ onCardClick, clothingItems, handleAddClick, handleLogout }) {
+function Profile({
+  onCardClick,
+  clothingItems,
+  handleAddClick,
+  handleLogout,
+  onCardLike,
+}) {
   const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
 
   const [isEditProfileModalOpen, setIsEditProfileModalOpen] =
     React.useState(false);
+
+  const likedItems = clothingItems.filter(
+    (item) =>
+      item?.likes && currentUser?._id && item.likes.includes(currentUser._id)
+  );
 
   const handleEditProfileClick = () => {
     setIsEditProfileModalOpen(true);
@@ -45,8 +56,9 @@ function Profile({ onCardClick, clothingItems, handleAddClick, handleLogout }) {
       <section className="profile__clothes-section">
         <ClothesSection
           onCardClick={onCardClick}
-          clothingItems={clothingItems}
+          clothingItems={likedItems}
           handleAddClick={handleAddClick}
+          onCardLike={onCardLike}
         />
       </section>
       <EditProfileModal

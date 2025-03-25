@@ -13,7 +13,6 @@ function Header({
   weatherData,
   isLoggedIn,
   onLoginClick,
-  onLogout,
   onRegisterClick,
 }) {
   const currentDate = new Date().toLocaleString("default", {
@@ -44,28 +43,33 @@ function Header({
           </button>
         </div>
       ) : (
-        <Link to="/profile" className="header__link">
-          <div className="header__user-container">
-            <p className="header__username">
-              {currentUser?.name || "Username"}
-            </p>
-            <div className="header__avatar">
-              {currentUser?.avatar ? (
-                <img
-                  className="header__avatar-image"
-                  src={currentUser.avatar}
-                  alt="user avatar"
-                />
-              ) : (
-                <div className="header__avatar-placeholder">
-                  {currentUser?.name
-                    ? currentUser.name.charAt(0).toUpperCase()
-                    : "U"}
-                </div>
-              )}
+        <div className="header__user-section">
+          <button className="header__button" onClick={handleAddClick}>
+            + Add Clothes
+          </button>
+          <Link to="/profile" className="header__link">
+            <div className="header__user-container">
+              <p className="header__username">
+                {currentUser?.name || "Username"}
+              </p>
+              <div className="header__avatar">
+                {currentUser?.avatar ? (
+                  <img
+                    className="header__avatar-image"
+                    src={currentUser.avatar}
+                    alt="user avatar"
+                  />
+                ) : (
+                  <div className="header__avatar-placeholder">
+                    {currentUser?.name
+                      ? currentUser.name.charAt(0).toUpperCase()
+                      : "U"}
+                  </div>
+                )}
+              </div>
             </div>
-          </div>
-        </Link>
+          </Link>
+        </div>
       )}
     </header>
   );
