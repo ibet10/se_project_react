@@ -1,10 +1,20 @@
 import React from "react";
 import "./ItemCard.css";
 
-function ItemCard({ item, onCardClick }) {
+function ItemCard({ item, onCardClick, onCardLike, currentUser }) {
   const handleCardClick = () => {
     onCardClick(item);
   };
+
+  const handleLike = () => {
+    onCardLike({ id: item._id, isLiked: isLiked });
+  };
+
+  const isLiked = item.likes.some((id) => id === currentUser._id);
+
+  const itemLikeButtonClassName = `card__like-button ${
+    isLiked ? "card__like-button_active" : ""
+  }`;
 
   return (
     <li className="card">
@@ -15,6 +25,13 @@ function ItemCard({ item, onCardClick }) {
         alt={item.name}
         onClick={handleCardClick}
       />
+      {currentUser && (
+        <button
+          type="button"
+          className={itemLikeButtonClassName}
+          onClick={handleLike}
+        />
+      )}
     </li>
   );
 }

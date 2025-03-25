@@ -33,3 +33,34 @@
   opacity: 50%;
   transition: 0.2s, ease-in;
 }
+.card__like-button {
+  background-color: red; /* Temporary to make it visible */
+  width: 21px;
+  height: 18px;
+  border: 1px solid black; /* Temporary to make it visible */
+  cursor: pointer;
+  position: absolute;
+  top: 15px;
+
+  right: 12px;
+}
+
+/*.card__like-button {
+  background: transparent url(../../images/like-inactive.svg) center no-repeat;
+  width: 21px;
+  height: 18px;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: 15px;
+  right: 12px;
+}*/
+
+.card__like-button_active {
+  background-image: url(../../images/like-active.svg);
+}
+
+.card__like-button:hover {
+  opacity: 0.5;
+  transition: 0.3s;
+}

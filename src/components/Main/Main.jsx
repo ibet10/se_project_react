@@ -6,7 +6,13 @@ import ItemCard from "../ItemCard/ItemCard";
 //import { defaultClothingItems } from "../../utils/constants";
 // //No longer use, instead pass clothingItems prop here and to App Main
 
-function Main({ weatherData, handleCardClick, clothingItems }) {
+function Main({
+  weatherData,
+  handleCardClick,
+  clothingItems,
+  onCardLike,
+  currentUser,
+}) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
 
   console.log("Weather type:", weatherData.type);
@@ -34,6 +40,8 @@ function Main({ weatherData, handleCardClick, clothingItems }) {
                   key={item._id}
                   item={item}
                   onCardClick={handleCardClick}
+                  onCardLike={onCardLike}
+                  currentUser={currentUser}
                 />
               );
             })}

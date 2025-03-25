@@ -24,7 +24,13 @@ import {
 } from "../../utils/auth";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import { coordinates, APIkey } from "../../utils/constants";
-import { getItems, addItem, deleteItem } from "../../utils/api";
+import {
+  getItems,
+  addItem,
+  deleteItem,
+  addCardLike,
+  removeCardLike,
+} from "../../utils/api";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
@@ -49,6 +55,30 @@ function App() {
     setActiveModal("preview");
     setSelectedCard(card);
   };
+
+  // Handle Likes
+  const handleCardLike = ({ id, isLiked }) => {
+    !isLiked
+      ? addCardLike(id)
+          .then((updatedCard) => {
+            setClothingItems((cards) =>
+              cards.map((item) => (item._id === id ? updatedCard : item))
+            );
+          })
+          .catch((err) => console.log(err))
+      : removeCardLike(id)
+          .then((updatedCard) => {
+            setClothingItems((cards) =>
+              cards.map((item) => (item._id === id ? updatedCard : item))
+            );
+          })
+          .catch((err) => console.log(err));
+  };
+  /*
+  const handleCardLike = (card) => {
+    console.log("Card liked:", card);
+  };
+  */
 
   //Open "add-garmet" Modal
   const handleAddClick = () => {
@@ -294,6 +324,8 @@ function App() {
                     weatherData={weatherData}
                     handleCardClick={handleCardClick}
                     clothingItems={clothingItems}
+                    onCardLike={handleCardLike}
+                    currentUser={currentUser}
                   />
                 }
               ></Route>

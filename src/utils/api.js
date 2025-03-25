@@ -41,3 +41,27 @@ export async function deleteItem(id) {
   });
   return checkRequest(res);
 }
+
+// PUT /items/:id/likes
+export async function addCardLike(id) {
+  const res = await fetch(`${baseUrl}/items/${id}/likes`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${getToken()}`,
+    },
+  });
+  return checkRequest(res);
+}
+
+// DELETE /items/:id/likes
+export async function removeCardLike(id) {
+  const res = await fetch(`${baseUrl}/items/${id}/likes`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${getToken()}`,
+    },
+  });
+  return checkRequest(res);
+}
