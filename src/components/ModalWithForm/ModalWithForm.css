@@ -112,7 +112,7 @@
 }
 
 .modal__submit-button {
-  background-color: #0000004d;
+  background-color: #000000;
   color: #fff;
   width: 124px;
   height: 36px;
@@ -123,4 +123,37 @@
   border-radius: 4px;
   margin-top: 24px;
   cursor: pointer;
+}
+
+.modal__submit-button:hover {
+  cursor: pointer;
+  opacity: 60%;
+  transition: 0.2s, ease-in;
+}
+
+.modal__submit-button_disabled {
+  background-color: rgba(0, 0, 0, 0.3);
+  cursor: not-allowed;
+}
+
+.modal__alternative-button {
+  background: none;
+  border: none;
+  color: #000;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 700;
+  padding: 0;
+  margin-left: 12px;
+  cursor: pointer;
+}
+
+.modal__alternative-button:hover {
+  cursor: pointer;
+  opacity: 60%;
+  transition: 0.2s, ease-in;
+}
+
+.modal__input_type_error {
+  border-bottom: 1px solid #ff0000;
 }

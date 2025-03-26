@@ -50,7 +50,7 @@ const RegisterModal = ({
       onSubmit={handleSubmit}
       title="Sign Up"
       buttonText={buttonText}
-      alternativeButtonText="Log in"
+      alternativeButtonText="or Log in"
       onAlternativeClick={onRegisterClick}
     >
       <label className="modal__label" htmlFor="email-register">

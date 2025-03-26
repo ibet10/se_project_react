@@ -21,3 +21,29 @@
   margin: 35px 0 0 16px;
   text-wrap: nowrap;
 }
+
+.sidebar__buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 24px;
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 700;
+}
+
+.sidebar__button {
+  background: none;
+  border: none;
+  color: black;
+  font-weight: 700;
+  padding: 0;
+  text-align: left;
+  cursor: pointer;
+}
+
+.sidebar__button:hover {
+  cursor: pointer;
+  opacity: 60%;
+  transition: 0.2s, ease-in;
+}

@@ -10,6 +10,7 @@ const LoginModal = ({
 }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [passwordError, setPasswordError] = useState(false);
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -21,7 +22,11 @@ const LoginModal = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onLogin({ email, password });
+    onLogin({ email, password }).catch((err) => {
+      if (err.message.includes("password")) {
+        setPasswordError(true);
+      }
+    });
   };
 
   useEffect(() => {
@@ -38,7 +43,7 @@ const LoginModal = ({
       onSubmit={handleSubmit}
       title="Log in"
       buttonText={buttonText}
-      alternativeButtonText="Sign up"
+      alternativeButtonText="or Sign up"
       onAlternativeClick={onLoginClick}
     >
       <label className="modal__label" htmlFor="email-login">
@@ -59,7 +64,9 @@ const LoginModal = ({
       <label className="modal__label" htmlFor="password-login">
         Password
         <input
-          className="modal__input"
+          className={`modal__input ${
+            passwordError ? "modal__input_type_error" : ""
+          }`}
           id="password-login"
           type="password"
           placeholder="Password"

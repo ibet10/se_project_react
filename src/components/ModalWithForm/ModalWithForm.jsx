@@ -1,4 +1,5 @@
 import "./ModalWithForm.css";
+import { useRef, useState, useEffect } from "react";
 
 function ModalWithForm({
   children,
@@ -10,6 +11,25 @@ function ModalWithForm({
   alternativeButtonText,
   onAlternativeClick,
 }) {
+  const formRef = useRef(null);
+  const [isValid, setIsValid] = useState(false);
+
+  useEffect(() => {
+    const checkValidity = () => {
+      if (formRef.current) {
+        setIsValid(formRef.current.checkValidity());
+      }
+    };
+
+    checkValidity();
+
+    const form = formRef.current;
+    if (form) {
+      form.addEventListener("input", checkValidity);
+      return () => form.removeEventListener("input", checkValidity);
+    }
+  }, [isOpen]);
+
   return (
     <div className={`modal ${isOpen ? "modal_opened" : ""}`}>
       <div className="modal__content">
@@ -19,19 +39,33 @@ function ModalWithForm({
           onClick={closeActiveModal}
           type="button"
         />
-        <form className="modal__form" onSubmit={onSubmit}>
+        <form
+          ref={formRef}
+          className="modal__form"
+          onSubmit={onSubmit}
+          noValidate
+        >
           {children}
           <div className="modal__button-container">
-            <button className="modal__submit-button" type="submit">
+            <button
+              className={`modal__submit-button ${
+                !isValid ? "modal__submit-button_disabled" : ""
+              }`}
+              type="submit"
+              disabled={!isValid}
+            >
               {buttonText}
             </button>
-            <button
-              className="modal__alternative-button"
-              type="button"
-              onClick={onAlternativeClick}
-            >
-              {alternativeButtonText}
-            </button>
+
+            {alternativeButtonText && (
+              <button
+                className="modal__alternative-button"
+                type="button"
+                onClick={onAlternativeClick}
+              >
+                {alternativeButtonText}
+              </button>
+            )}
           </div>
         </form>
       </div>

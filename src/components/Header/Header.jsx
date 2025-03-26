@@ -35,16 +35,25 @@ function Header({
       <ToggleSwitch />
       {!isLoggedIn ? (
         <div className="header__auth-buttons">
-          <button className="header__button" onClick={onRegisterClick}>
+          <button
+            className="header__button header__auth-button"
+            onClick={onRegisterClick}
+          >
             Sign Up
           </button>
-          <button className="header__button" onClick={onLoginClick}>
+          <button
+            className="header__button header__auth-button"
+            onClick={onLoginClick}
+          >
             Log In
           </button>
         </div>
       ) : (
         <div className="header__user-section">
-          <button className="header__button" onClick={handleAddClick}>
+          <button
+            className="header__button header__add-clothes-button"
+            onClick={handleAddClick}
+          >
             + Add Clothes
           </button>
           <Link to="/profile" className="header__link">

@@ -34,19 +34,6 @@
   transition: 0.2s, ease-in;
 }
 
-/*
-.card__like-button {
-  background-color: red;
-  width: 21px;
-  height: 18px;
-  border: 1px solid black;
-  cursor: pointer;
-  position: absolute;
-  top: 15px;
-
-  right: 12px;
-}*/
-
 .card__like-button {
   background: transparent url(../../assets/like_button-inactive.svg) center
     no-repeat;
