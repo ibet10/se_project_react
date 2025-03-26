@@ -117,6 +117,7 @@ function App() {
       }
     } catch (err) {
       console.error("Login attempt failed, :(", err);
+      throw err;
     }
   };
 

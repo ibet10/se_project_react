@@ -9,6 +9,12 @@
   overflow: hidden;
 }
 
+.card:hover {
+  cursor: pointer;
+  opacity: 75%;
+  transition: 0.2s, ease-in;
+}
+
 .card__title {
   position: absolute;
   margin: 0;
@@ -20,20 +26,22 @@
   font-weight: 700;
   border-radius: 4px;
   padding: 2px 12px;
+  z-index: 999;
 }
 
 .card__image {
   width: 100%;
   overflow: hidden;
   border-radius: 20px;
+  z-index: 0;
 }
-
+/*
 .card__image:hover {
   cursor: pointer;
   opacity: 50%;
   transition: 0.2s, ease-in;
 }
-
+*/
 .card__like-button {
   background: transparent url(../../assets/like_button-inactive.svg) center
     no-repeat;
@@ -42,15 +50,18 @@
   border: none;
   cursor: pointer;
   position: absolute;
-  top: 15px;
-  right: 12px;
+  top: 20px;
+  right: 102px;
+  z-index: 999;
+  opacity: 1;
 }
 
 .card__like-button_active {
   background-image: url(../../assets/like_button-active.svg);
+  opacity: 0.9;
 }
 
 .card__like-button:hover {
-  opacity: 0.5;
+  opacity: 0.3;
   transition: 0.3s;
 }

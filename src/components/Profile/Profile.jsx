@@ -65,7 +65,6 @@ function Profile({
         isOpen={isEditProfileModalOpen}
         onClose={handleCloseEditProfileModal}
         onSubmit={handleProfileUpdate}
-        currentUser={currentUser}
       />
     </div>
   );

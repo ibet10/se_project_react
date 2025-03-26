@@ -125,12 +125,13 @@
   cursor: pointer;
 }
 
+/*
 .modal__submit-button:hover {
   cursor: pointer;
   opacity: 60%;
   transition: 0.2s, ease-in;
 }
-
+*/
 .modal__submit-button_disabled {
   background-color: rgba(0, 0, 0, 0.3);
   cursor: not-allowed;
@@ -151,10 +152,15 @@
 
 .modal__alternative-button:hover {
   cursor: pointer;
-  opacity: 60%;
+  opacity: 90%;
   transition: 0.2s, ease-in;
 }
 
+.modal__label_type_error {
+  color: #ff4d00;
+}
+
 .modal__input_type_error {
-  border-bottom: 1px solid #ff0000;
+  border-bottom: 1px solid #ff4d00;
+  color: #ff4d00;
 }

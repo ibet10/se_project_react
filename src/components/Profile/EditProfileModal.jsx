@@ -1,9 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
-const EditProfileModal = ({ isOpen, onClose, onSubmit, currentUser }) => {
+const EditProfileModal = ({ isOpen, onClose, onSubmit }) => {
+  const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
   const [name, setName] = useState("");
   const [avatar, setAvatar] = useState("");
+
+  const isFormInvalid = !name || !avatar;
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -37,6 +41,7 @@ const EditProfileModal = ({ isOpen, onClose, onSubmit, currentUser }) => {
       closeActiveModal={onClose}
       onSubmit={handleOnSubmit}
       buttonText="Save changes"
+      disabled={isFormInvalid}
     >
       <label className="modal__label" htmlFor="name-edit-profile">
         Name*{" "}

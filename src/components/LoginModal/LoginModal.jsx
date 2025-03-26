@@ -18,21 +18,34 @@ const LoginModal = ({
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
+    setPasswordError(false);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     onLogin({ email, password }).catch((err) => {
-      if (err.message.includes("password")) {
+      console.log("Error in handleSubmit:", err);
+      setPasswordError(true);
+    });
+  };
+
+  /*
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onLogin({ email, password }).catch((err) => {
+      console.log("Error in handleSubmit:", err);
+      if (err.status === 401 || err === 401) {
         setPasswordError(true);
       }
     });
   };
+  */
 
   useEffect(() => {
     if (isOpen) {
       setEmail("");
       setPassword("");
+      setPasswordError(false);
     }
   }, [isOpen]);
 
@@ -45,6 +58,7 @@ const LoginModal = ({
       buttonText={buttonText}
       alternativeButtonText="or Sign up"
       onAlternativeClick={onLoginClick}
+      disabled={passwordError}
     >
       <label className="modal__label" htmlFor="email-login">
         Email
@@ -61,8 +75,14 @@ const LoginModal = ({
         />
       </label>
 
-      <label className="modal__label" htmlFor="password-login">
-        Password
+      <label
+        className={`modal__label ${
+          passwordError ? "modal__label_type_error" : ""
+        }`}
+        htmlFor="password-login"
+      >
+        {console.log("passwordError state:", passwordError)}
+        {passwordError ? "Incorrect password" : "Password"}
         <input
           className={`modal__input ${
             passwordError ? "modal__input_type_error" : ""

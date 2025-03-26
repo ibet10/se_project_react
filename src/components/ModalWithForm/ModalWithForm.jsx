@@ -10,6 +10,7 @@ function ModalWithForm({
   onSubmit,
   alternativeButtonText,
   onAlternativeClick,
+  disabled,
 }) {
   const formRef = useRef(null);
   const [isValid, setIsValid] = useState(false);
@@ -17,7 +18,7 @@ function ModalWithForm({
   useEffect(() => {
     const checkValidity = () => {
       if (formRef.current) {
-        setIsValid(formRef.current.checkValidity());
+        setIsValid(formRef.current.checkValidity() && !disabled);
       }
     };
 
@@ -28,7 +29,7 @@ function ModalWithForm({
       form.addEventListener("input", checkValidity);
       return () => form.removeEventListener("input", checkValidity);
     }
-  }, [isOpen]);
+  }, [isOpen, disabled]);
 
   return (
     <div className={`modal ${isOpen ? "modal_opened" : ""}`}>
@@ -52,7 +53,7 @@ function ModalWithForm({
                 !isValid ? "modal__submit-button_disabled" : ""
               }`}
               type="submit"
-              disabled={!isValid}
+              disabled={!isValid || disabled}
             >
               {buttonText}
             </button>

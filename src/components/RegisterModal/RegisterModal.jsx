@@ -13,6 +13,8 @@ const RegisterModal = ({
   const [name, setName] = useState("");
   const [avatar, setAvatar] = useState("");
 
+  const isFormInvalid = !email || !password || !name || !avatar;
+
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
@@ -52,6 +54,7 @@ const RegisterModal = ({
       buttonText={buttonText}
       alternativeButtonText="or Log in"
       onAlternativeClick={onRegisterClick}
+      disabled={isFormInvalid}
     >
       <label className="modal__label" htmlFor="email-register">
         Email*{" "}
