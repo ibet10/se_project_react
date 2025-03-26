@@ -49,6 +49,7 @@ const AddItemModal = ({ isOpen, onAddItem, closeActiveModal, buttonText }) => {
           placeholder="Name"
           value={name}
           onChange={handleNameChange}
+          required
         />
       </label>
       <label className="modal__label" htmlFor="imageUrl">
@@ -60,6 +61,7 @@ const AddItemModal = ({ isOpen, onAddItem, closeActiveModal, buttonText }) => {
           placeholder="Image URL"
           value={imgUrl}
           onChange={handleImgUrlChange}
+          required
         />
       </label>
       <fieldset className="modal__radio-buttons">
@@ -74,6 +76,7 @@ const AddItemModal = ({ isOpen, onAddItem, closeActiveModal, buttonText }) => {
               value="hot"
               checked={weather === "hot"}
               onChange={handleWeatherChange}
+              required
             />
             Hot
           </label>

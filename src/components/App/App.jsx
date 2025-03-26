@@ -333,7 +333,7 @@ function App() {
               onRegister={handleRegistration}
               closeActiveModal={closeActiveModal}
               buttonText={"Sign up"}
-              onRegisterClick={handleRegisterClick}
+              onRegisterClick={handleLoginClick}
             />
 
             <LoginModal
@@ -341,7 +341,7 @@ function App() {
               onLogin={handleLogin}
               closeActiveModal={closeActiveModal}
               buttonText={"Log in"}
-              onLoginClick={handleLoginClick}
+              onLoginClick={handleRegisterClick}
             />
           </CurrentTemperatureUnitContext.Provider>
         )}
