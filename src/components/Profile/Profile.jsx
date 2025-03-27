@@ -56,7 +56,7 @@ function Profile({
       <section className="profile__clothes-section">
         <ClothesSection
           onCardClick={onCardClick}
-          clothingItems={likedItems}
+          clothingItems={clothingItems}
           handleAddClick={handleAddClick}
           onCardLike={onCardLike}
         />

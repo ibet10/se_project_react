@@ -63,6 +63,9 @@ function App() {
     !isLiked
       ? addCardLike(id)
           .then((updatedCard) => {
+            console.log("After like - Full updatedCard:", updatedCard);
+            console.log("After like - updatedCard.data:", updatedCard.data);
+
             setClothingItems((cards) =>
               cards.map((item) => (item._id === id ? updatedCard.data : item))
             );
@@ -70,6 +73,9 @@ function App() {
           .catch((err) => console.log(err))
       : removeCardLike(id)
           .then((updatedCard) => {
+            console.log("After unlike - Full updatedCard:", updatedCard);
+            console.log("After unlike - updatedCard.data:", updatedCard.data);
+
             setClothingItems((cards) =>
               cards.map((item) => (item._id === id ? updatedCard.data : item))
             );
@@ -155,7 +161,6 @@ function App() {
         weather: newItem.weather.toLowerCase(),
       });
       const createdItem = response.data;
-      //console.log("Created item data:", createdItem);
       setClothingItems((prevItems) => [createdItem, ...prevItems]);
       closeActiveModal();
     } catch (err) {
