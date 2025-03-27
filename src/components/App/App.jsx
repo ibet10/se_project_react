@@ -52,6 +52,15 @@ function App() {
 
   const [isCheckingAuth, setIsCheckingAuth] = useState(true);
 
+  //Universal handler function
+  const handleSubmit = (request) => {
+    setIsLoading(true);
+    request()
+      .then(closeActiveModal)
+      .catch(console.error)
+      .finally(() => setIsLoading(false));
+  };
+
   //Open "preview" Modal
   const handleCardClick = (card) => {
     setActiveModal("preview");
@@ -63,9 +72,6 @@ function App() {
     !isLiked
       ? addCardLike(id)
           .then((updatedCard) => {
-            console.log("After like - Full updatedCard:", updatedCard);
-            console.log("After like - updatedCard.data:", updatedCard.data);
-
             setClothingItems((cards) =>
               cards.map((item) => (item._id === id ? updatedCard.data : item))
             );
@@ -73,9 +79,6 @@ function App() {
           .catch((err) => console.log(err))
       : removeCardLike(id)
           .then((updatedCard) => {
-            console.log("After unlike - Full updatedCard:", updatedCard);
-            console.log("After unlike - updatedCard.data:", updatedCard.data);
-
             setClothingItems((cards) =>
               cards.map((item) => (item._id === id ? updatedCard.data : item))
             );
@@ -110,9 +113,26 @@ function App() {
     setActiveModal("register");
   };
 
+  /*
+    const handleSubmit = (request) => {
+    setIsLoading(true);
+    request()
+      .then(closeActiveModal)
+      .catch(console.error)
+      .finally(() => setIsLoading(false));
+  };
+  */
   // Handle Logging In
-  const handleLogin = async ({ email, password }) => {
-    console.log("handleLogin called with:", { email, password });
+  const handleLogin = ({ email, password }) => {
+    const makeRequest = async () => {
+      const userData = await login({ email, password });
+      setIsLoggedIn(true);
+      setCurrentUser(userData);
+    };
+
+    handleSubmit(makeRequest);
+  };
+  /*const handleLogin = async ({ email, password }) => {
     try {
       const userData = await login({ email, password });
       console.log("Login userData:", userData);
@@ -126,8 +146,19 @@ function App() {
       throw err;
     }
   };
+  */
 
   // Handle Registration
+  const handleRegistration = ({ name, avatar, email, password }) => {
+    const makeRequest = async () => {
+      const userData = await register({ email, password, name, avatar });
+      setIsLoggedIn(true);
+      setCurrentUser(userData);
+    };
+
+    handleSubmit(makeRequest);
+  };
+  /*
   const handleRegistration = async ({ name, avatar, email, password }) => {
     try {
       const userData = await register({ email, password, name, avatar });
@@ -138,6 +169,7 @@ function App() {
       console.error("Registration attempt failed, :( ", err);
     }
   };
+*/
 
   // Handle Logging Out
   const handleLogout = () => {
@@ -152,6 +184,20 @@ function App() {
   };
 
   // Add new item
+  const handleAddItemCardSubmit = (newItem) => {
+    const makeRequest = async () => {
+      const response = await addItem({
+        name: newItem.name,
+        imageUrl: newItem.imgUrl,
+        weather: newItem.weather.toLowerCase(),
+      });
+      const createdItem = response.data;
+      setClothingItems((prevItems) => [createdItem, ...prevItems]);
+    };
+
+    handleSubmit(makeRequest);
+  };
+  /*
   const handleAddItemCardSubmit = async (newItem) => {
     setIsLoading(true);
     try {
@@ -169,6 +215,7 @@ function App() {
       setIsLoading(false);
     }
   };
+*/
 
   // Delete item by Id
   const handleDeleteItemCard = async () => {
@@ -203,7 +250,6 @@ function App() {
     const fetchItems = async () => {
       try {
         const items = await getItems();
-        //console.log("Fetched items:", items);
         setClothingItems(items);
       } catch (err) {
         console.error("Error fetching items:", err);

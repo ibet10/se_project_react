@@ -4,8 +4,6 @@ import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperature
 import "./Main.css";
 import WeatherCard from "../WeatherCard/WeatherCard";
 import ItemCard from "../ItemCard/ItemCard";
-//import { defaultClothingItems } from "../../utils/constants";
-// //No longer use, instead pass clothingItems prop here and to App Main
 
 function Main({ weatherData, handleCardClick, clothingItems, onCardLike }) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);

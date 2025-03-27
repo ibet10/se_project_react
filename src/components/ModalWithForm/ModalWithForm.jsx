@@ -1,5 +1,7 @@
-import "./ModalWithForm.css";
 import { useRef, useState, useEffect } from "react";
+
+import useModalClose from "../../hooks/useModalClose";
+import "./ModalWithForm.css";
 
 function ModalWithForm({
   children,
@@ -12,6 +14,7 @@ function ModalWithForm({
   onAlternativeClick,
   disabled,
 }) {
+  useModalClose(isOpen, closeActiveModal);
   const formRef = useRef(null);
   const [isValid, setIsValid] = useState(false);
 

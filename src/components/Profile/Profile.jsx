@@ -21,10 +21,12 @@ function Profile({
   const [isEditProfileModalOpen, setIsEditProfileModalOpen] =
     React.useState(false);
 
+  /*
   const likedItems = clothingItems.filter(
     (item) =>
       item?.likes && currentUser?._id && item.likes.includes(currentUser._id)
   );
+  */
 
   const handleEditProfileClick = () => {
     setIsEditProfileModalOpen(true);

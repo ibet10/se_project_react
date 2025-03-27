@@ -5,7 +5,10 @@ import { getToken } from "./auth";
 // Response Checker
 export function checkRequest(res) {
   if (!res.ok) {
-    return Promise.reject(`Error: ${res.status}`);
+    return res
+      .json()
+      .then((err) => Promise.reject(err))
+      .catch(() => Promise.reject(`Error: ${res.status}`));
   }
   return res.json();
 }

@@ -23,10 +23,7 @@ const LoginModal = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onLogin({ email, password }).catch((err) => {
-      console.log("Error in handleSubmit:", err);
-      setPasswordError(true);
-    });
+    onLogin({ email, password });
   };
 
   /*
@@ -34,9 +31,7 @@ const LoginModal = ({
     e.preventDefault();
     onLogin({ email, password }).catch((err) => {
       console.log("Error in handleSubmit:", err);
-      if (err.status === 401 || err === 401) {
-        setPasswordError(true);
-      }
+      setPasswordError(true);
     });
   };
   */
@@ -81,7 +76,6 @@ const LoginModal = ({
         }`}
         htmlFor="password-login"
       >
-        {console.log("passwordError state:", passwordError)}
         {passwordError ? "Incorrect password" : "Password"}
         <input
           className={`modal__input ${

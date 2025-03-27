@@ -5,7 +5,7 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 import "./Header.css";
 import logo from "../../assets/logo.svg";
-import avatar from "../../assets/avatar.png";
+// import avatar from "../../assets/avatar.png";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 
 function Header({
@@ -21,7 +21,6 @@ function Header({
   });
 
   const { currentUser } = useContext(CurrentUserContext) || {};
-  console.log("Current User in Header:", currentUser);
 
   return (
     <header className="header">
