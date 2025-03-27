@@ -1,19 +1,16 @@
 import React, { useContext } from "react";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+
 import "./Main.css";
 import WeatherCard from "../WeatherCard/WeatherCard";
 import ItemCard from "../ItemCard/ItemCard";
 //import { defaultClothingItems } from "../../utils/constants";
 // //No longer use, instead pass clothingItems prop here and to App Main
 
-function Main({
-  weatherData,
-  handleCardClick,
-  clothingItems,
-  onCardLike,
-  currentUser,
-}) {
+function Main({ weatherData, handleCardClick, clothingItems, onCardLike }) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
+  const { currentUser } = useContext(CurrentUserContext);
 
   console.log("Weather type:", weatherData.type);
   console.log(
@@ -41,7 +38,6 @@ function Main({
                   item={item}
                   onCardClick={handleCardClick}
                   onCardLike={onCardLike}
-                  currentUser={currentUser}
                 />
               );
             })}

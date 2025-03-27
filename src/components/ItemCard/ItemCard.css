@@ -26,22 +26,14 @@
   font-weight: 700;
   border-radius: 4px;
   padding: 2px 12px;
-  z-index: 999;
 }
 
 .card__image {
   width: 100%;
   overflow: hidden;
   border-radius: 20px;
-  z-index: 0;
 }
-/*
-.card__image:hover {
-  cursor: pointer;
-  opacity: 50%;
-  transition: 0.2s, ease-in;
-}
-*/
+
 .card__like-button {
   background: transparent url(../../assets/like_button-inactive.svg) center
     no-repeat;
@@ -51,8 +43,8 @@
   cursor: pointer;
   position: absolute;
   top: 20px;
-  right: 102px;
-  z-index: 999;
+  /* right: 102px; */
+  right: 85px;
   opacity: 1;
 }
 

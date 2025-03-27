@@ -21,6 +21,14 @@ function ItemCard({ item, onCardClick, onCardLike }) {
     isLiked ? "card__like-button_active" : ""
   }`;
 
+  console.log({
+    itemId: item._id,
+    likes: item.likes,
+    likesContent: JSON.stringify(item.likes),
+    currentUserId: currentUser?._id,
+    isLiked,
+  });
+
   return (
     <li className="card">
       <h2 className="card__title">{item.name}</h2>

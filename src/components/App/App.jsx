@@ -64,14 +64,14 @@ function App() {
       ? addCardLike(id)
           .then((updatedCard) => {
             setClothingItems((cards) =>
-              cards.map((item) => (item._id === id ? updatedCard : item))
+              cards.map((item) => (item._id === id ? updatedCard.data : item))
             );
           })
           .catch((err) => console.log(err))
       : removeCardLike(id)
           .then((updatedCard) => {
             setClothingItems((cards) =>
-              cards.map((item) => (item._id === id ? updatedCard : item))
+              cards.map((item) => (item._id === id ? updatedCard.data : item))
             );
           })
           .catch((err) => console.log(err));
@@ -113,10 +113,10 @@ function App() {
       if (userData) {
         setIsLoggedIn(true);
         setCurrentUser(userData);
-        setActiveModal("");
+        closeActiveModal();
       }
     } catch (err) {
-      console.error("Login attempt failed, :(", err);
+      console.error("Login attempt failed, :( ", err);
       throw err;
     }
   };
@@ -127,9 +127,9 @@ function App() {
       const userData = await register({ email, password, name, avatar });
       setIsLoggedIn(true);
       setCurrentUser(userData);
-      setActiveModal("");
+      closeActiveModal();
     } catch (err) {
-      console.error("Registration attempt failed, :(", err);
+      console.error("Registration attempt failed, :( ", err);
     }
   };
 
@@ -285,7 +285,6 @@ function App() {
                       handleCardClick={handleCardClick}
                       clothingItems={clothingItems}
                       onCardLike={handleCardLike}
-                      currentUser={currentUser}
                     />
                   }
                 ></Route>
