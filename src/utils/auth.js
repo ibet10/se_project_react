@@ -25,6 +25,7 @@ export const checkToken = async (token) => {
 };
 
 export const register = async ({ name, avatar, email, password }) => {
+  console.log("Signup data being sent:", { name, avatar, email, password });
   const res = await fetch(`${baseUrl}/signup`, {
     method: "POST",
     headers: {
@@ -36,20 +37,35 @@ export const register = async ({ name, avatar, email, password }) => {
 };
 
 export const login = async ({ email, password }) => {
-  const res = await fetch(`${baseUrl}/signin`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ email, password }),
-  });
-  const data = await checkRequest(res);
-  if (data.token) {
-    setToken(data.token);
-    return await checkToken(data.token);
-  }
+  try {
+    if (password.length < 8) {
+      throw new Error("Password must be at least 8 characters long");
+    }
 
-  return data;
+    const res = await fetch(`${baseUrl}/signin`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, password }),
+    });
+
+    if (!res.ok) {
+      const errorData = await res.json();
+      console.log("Server error response:", errorData);
+      throw new Error(errorData.message || "Login failed");
+    }
+    const data = await checkRequest(res);
+    if (data.token) {
+      setToken(data.token);
+      return await checkToken(data.token);
+    }
+
+    return data;
+  } catch (error) {
+    console.log("Login error:", error);
+    throw error;
+  }
 };
 
 export const updateProfile = async (token, { name, avatar }) => {

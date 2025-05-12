@@ -22,15 +22,28 @@ export async function getItems(weatherType = "") {
 
 // POST/items
 export async function addItem(item) {
-  const res = await fetch(`${baseUrl}/items`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      authorization: `Bearer ${getToken()}`,
-    },
-    body: JSON.stringify(item),
-  });
-  return checkRequest(res);
+  console.log("Data being sent to server:", item);
+  try {
+    const res = await fetch(`${baseUrl}/items`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${getToken()}`,
+      },
+      body: JSON.stringify(item),
+    });
+
+    if (!res.ok) {
+      const errorData = await res.json();
+      console.log("Server error response for addItem:", errorData);
+      throw new Error(errorData.message || `Error: ${res.status}`);
+    }
+
+    return await res.json();
+  } catch (error) {
+    console.log("AddItem error details:", error);
+    throw error;
+  }
 }
 
 // DELETE/items
