@@ -8,7 +8,9 @@
     "dev": "vite --open",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "npm run build && scp -r ./dist/* contact_ibet10raya@wtwr-instance.raspberryip.com:/home/contact_ibet10raya/frontend"
   },
   "dependencies": {
     "react": "^18.3.1",
