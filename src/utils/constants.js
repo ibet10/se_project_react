@@ -116,6 +116,9 @@ export const coordinates = {
 
 export const APIkey = "452ca9cc9c266ecce232c9a800114825";
 
-export const baseUrl = "http://localhost:3001";
+export const baseUrl =
+  process.env.NODE_ENV === "production"
+    ? "https://api.wtwr-instance.raspberryip.com"
+    : "http://localhost:3001";
 
 export const token_key = "jwt";

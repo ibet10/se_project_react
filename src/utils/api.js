@@ -1,6 +1,5 @@
 import { baseUrl } from "./constants";
 import { getToken } from "./auth";
-// REMOVE - const baseUrl = "http://localhost:3001";
 
 // Response Checker
 export function checkRequest(res) {
